@@ -5,6 +5,6 @@
     "author": "iamlaobie <iamlaobie@gmail.com>",
     "dependencies": {
         "express":">=2.5.2",
-        "redis":">0.7.1" 
+        "redis":">=0.7.1" 
     }    
 }
