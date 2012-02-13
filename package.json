@@ -1,0 +1,10 @@
+{
+    "name":"secret-key-server",
+    "version": "0.1.0",
+    "description": "send micro blog to weibo.com",
+    "author": "iamlaobie <iamlaobie@gmail.com>",
+    "dependencies": {
+        "express":">=2.5.2",
+        "redis":">0.7.1" 
+    }    
+}

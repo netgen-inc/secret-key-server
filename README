@@ -1,0 +1,23 @@
+1、配置说明
+{
+    "port":9327, 服务端口
+    "log":"access.log", 日志文件
+    "redis":{
+        "host":"localhost", 
+        "port":6379,
+        "db":1
+    }
+}
+2、启动
+node server.js
+
+3、添加或者更新密钥
+POST /set
+
+key=KEY&val=VAL
+
+4、获取密钥
+GET /get?key=KEY
+
+5、查看服务器状态
+GET /status

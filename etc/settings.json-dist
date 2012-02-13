@@ -1,0 +1,9 @@
+{
+    "port":9327,
+    "log":"access.log",
+    "redis":{
+        "host":"localhost",
+        "port":6379,
+        "db":1
+    }
+}
