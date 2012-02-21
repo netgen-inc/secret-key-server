@@ -11,32 +11,45 @@ app.use(express.bodyParser());
 var redisCli = redis.createClient(settings.redis.port, settings.redis.host);
 redisCli.select(settings.redis.db);
 
-app.get('/get', function(req, res){
+app.get('/:dataType/get', function(req, res){
     var key = req.param('key');
-    redisCli.get(key, function(err, secret){
-        res.end(secret);
-        var log = "GET\t" + key + "\t";
-        if(err){
-            log += JSON.stringify(err);
-        }else{
-            log += "success";
-        }
-        logger.info(log);
-    });
+    if(!key){
+        res.end(JSON.stringify({error:"the key is empty"}));
+    }else{
+        key = req.params.dataType + key;
+        redisCli.get(key, function(err, val){
+            var log = "GET\t" + key + "\t";
+            if(err){
+                res.end(JSON.stringify({error:err}));
+                log += JSON.stringify(err);
+            }else{
+                res.end(val);
+                log += "success";
+            }
+            logger.info(log);
+        });
+     }
 });
 
-app.post('/set', function(req, res){
+app.post('/:dataType/set', function(req, res){
     var key = req.body.key;
     var val = req.body.val;
+    if(!key || !val){
+        res.end(JSON.stringify({error:"the key or the val is empty"})); 
+        return;
+    }
+    
+    key = req.params.dataType + key;
     redisCli.set(key, val, function(err, result){
         var log = "SET\t" + key + "\t";
         if(err){
+            res.end(JSON.stringify({error:err}));
             log += JSON.stringify(err);
         }else{
             log += "success";
+            res.end('SUCCESS');
         }
         logger.info(log);
-        res.end('SUCCESS');
     });
 });
 
