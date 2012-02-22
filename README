@@ -12,12 +12,21 @@
 node server.js
 
 3、添加或者更新密钥
-POST /set
+POST /secretKey/set
 
 key=KEY&val=VAL
 
 4、获取密钥
-GET /get?key=KEY
+GET /secretKey/get?key=KEY
 
-5、查看服务器状态
+
+5、添加或者更新密钥
+POST /stock/set
+
+key=KEY&val=VAL
+
+6、获取密钥
+GET /stock/get?key=KEY
+
+7、查看服务器状态
 GET /status
